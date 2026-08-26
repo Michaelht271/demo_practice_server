@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+}
+
+.container {
+    width: 80%;
+    max-width: 800px;
+    margin: 100px auto;
+    text-align: center;
+}
+
+h1 {
+    font-size: 42px;
+}
+
+.status {
+    margin-top: 40px;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}

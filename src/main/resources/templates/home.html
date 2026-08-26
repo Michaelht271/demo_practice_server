@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title th:text="${title}">Home</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1 th:text="${title}">
+        My Spring Boot Server
+    </h1>
+
+    <p th:text="${message}">
+        Hello World
+    </p>
+
+    <div class="status">
+        <h2>🚀 Application is running!</h2>
+
+        <p>
+            Spring Boot + Thymeleaf
+        </p>
+
+        <p>
+            Deployed on Ubuntu EC2
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>
