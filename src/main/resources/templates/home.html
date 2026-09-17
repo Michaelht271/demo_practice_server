@@ -1,42 +1,200 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${appName} + ' — Dashboard'">App Dashboard</title>
 
-    <title th:text="${title}">Home</title>
+    <!-- Bootstrap 5.3 -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous">
 
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
 
-<div class="container">
+<!-- ── Navbar ─────────────────────────────────────────────────────────── -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <div class="container-fluid px-4">
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
+            <i class="bi bi-cloud-fill fs-4"></i>
+            <span th:text="${appName}">App</span>
+        </a>
+        <span class="badge bg-success-subtle text-success border border-success fw-semibold px-3 py-2">
+            <i class="bi bi-circle-fill me-1" style="font-size:.5rem;"></i> RUNNING
+        </span>
+    </div>
+</nav>
 
-    <h1 th:text="${title}">
-        My Spring Boot Server
-    </h1>
+<!-- ── Hero ───────────────────────────────────────────────────────────── -->
+<div class="hero-section text-white text-center py-5">
+    <div class="container">
+        <i class="bi bi-rocket-takeoff display-1 mb-3 d-block"></i>
+        <h1 class="display-4 fw-bold mb-2" th:text="${appName}">App</h1>
+        <p class="lead text-white-50 mb-4">Spring Boot · Thymeleaf · AWS EC2</p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <span class="badge bg-white text-primary fs-6 px-3 py-2 rounded-pill">
+                <i class="bi bi-tag me-1"></i>
+                v<span th:text="${appVersion}">0.0.1</span>
+            </span>
+            <span class="badge bg-white text-secondary fs-6 px-3 py-2 rounded-pill">
+                <i class="bi bi-clock me-1"></i>
+                <span th:text="${serverTime}">--:--:--</span>
+            </span>
+        </div>
+    </div>
+</div>
 
-    <p th:text="${message}">
-        Hello World
-    </p>
+<!-- ── Cards ──────────────────────────────────────────────────────────── -->
+<div class="container py-5">
 
-    <div class="status">
-        <h2>🚀 Application is running!</h2>
+    <!-- Row 1: Status + Uptime + Port -->
+    <div class="row g-4 mb-4">
 
-        <p>
-            Spring Boot + Thymeleaf
-        </p>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm text-center card-hover">
+                <div class="card-body p-4">
+                    <div class="icon-circle bg-success-subtle text-success mb-3">
+                        <i class="bi bi-heart-pulse fs-3"></i>
+                    </div>
+                    <h6 class="text-muted text-uppercase fw-semibold letter-spacing mb-1">Status</h6>
+                    <p class="fs-4 fw-bold text-success mb-0">Healthy</p>
+                </div>
+            </div>
+        </div>
 
-        <p>
-            Deployed on Ubuntu EC2
-        </p>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm text-center card-hover">
+                <div class="card-body p-4">
+                    <div class="icon-circle bg-primary-subtle text-primary mb-3">
+                        <i class="bi bi-hourglass-split fs-3"></i>
+                    </div>
+                    <h6 class="text-muted text-uppercase fw-semibold letter-spacing mb-1">Uptime</h6>
+                    <p class="fs-4 fw-bold text-primary mb-0" th:text="${uptime}">--</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm text-center card-hover">
+                <div class="card-body p-4">
+                    <div class="icon-circle bg-warning-subtle text-warning mb-3">
+                        <i class="bi bi-ethernet fs-3"></i>
+                    </div>
+                    <h6 class="text-muted text-uppercase fw-semibold letter-spacing mb-1">Port</h6>
+                    <p class="fs-4 fw-bold text-warning mb-0" th:text="${serverPort}">8080</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 2: Server Info -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-transparent border-bottom fw-semibold">
+                    <i class="bi bi-server me-2 text-primary"></i>Server Information
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-hover mb-0">
+                        <tbody>
+                            <tr>
+                                <td class="text-muted ps-4">Hostname</td>
+                                <td class="fw-semibold text-end pe-4" th:text="${hostname}">--</td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted ps-4">Operating System</td>
+                                <td class="fw-semibold text-end pe-4" th:text="${osName}">--</td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted ps-4">Architecture</td>
+                                <td class="fw-semibold text-end pe-4" th:text="${osArch}">--</td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted ps-4">Java Version</td>
+                                <td class="fw-semibold text-end pe-4" th:text="${javaVersion}">--</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 2 col 2: Memory -->
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-transparent border-bottom fw-semibold">
+                    <i class="bi bi-memory me-2 text-info"></i>Memory Usage
+                </div>
+                <div class="card-body d-flex flex-column justify-content-center p-4">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-muted">Used / Total</span>
+                        <span class="fw-semibold">
+                            <span th:text="${memUsed}">-- MB</span>
+                            / <span th:text="${memTotal}">-- MB</span>
+                        </span>
+                    </div>
+                    <div class="progress" style="height: 12px; border-radius: 8px;">
+                        <div class="progress-bar bg-info progress-bar-striped progress-bar-animated"
+                             role="progressbar"
+                             th:style="'width: ' + ${memPercent} + '%'"
+                             th:attr="aria-valuenow=${memPercent}"
+                             aria-valuemin="0" aria-valuemax="100">
+                        </div>
+                    </div>
+                    <p class="text-end text-muted small mt-2 mb-0">
+                        <span th:text="${memPercent}">0</span>% in use
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 3: Actuator quick links -->
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-transparent border-bottom fw-semibold">
+                    <i class="bi bi-activity me-2 text-danger"></i>Actuator Endpoints
+                </div>
+                <div class="card-body py-3 px-4">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="/actuator"        target="_blank" class="btn btn-outline-secondary btn-sm"><i class="bi bi-list me-1"></i>/actuator</a>
+                        <a href="/actuator/health" target="_blank" class="btn btn-outline-success btn-sm"><i class="bi bi-heart me-1"></i>/health</a>
+                        <a href="/actuator/info"   target="_blank" class="btn btn-outline-primary btn-sm"><i class="bi bi-info-circle me-1"></i>/info</a>
+                        <a href="/actuator/metrics" target="_blank" class="btn btn-outline-info btn-sm"><i class="bi bi-bar-chart me-1"></i>/metrics</a>
+                        <a href="/actuator/env"    target="_blank" class="btn btn-outline-warning btn-sm"><i class="bi bi-gear me-1"></i>/env</a>
+                        <a href="/actuator/beans"  target="_blank" class="btn btn-outline-danger btn-sm"><i class="bi bi-diagram-3 me-1"></i>/beans</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
 
+<!-- ── Footer ─────────────────────────────────────────────────────────── -->
+<footer class="text-center text-muted py-4 border-top mt-auto small">
+    <div class="container">
+        <span th:text="${appName}">App</span> &nbsp;·&nbsp;
+        Deployed on <strong>AWS EC2</strong> &nbsp;·&nbsp;
+        Built with <strong>Spring Boot 4</strong> &nbsp;·&nbsp;
+        <span th:text="${serverTime}">--</span>
+    </div>
+</footer>
+
+<!-- Bootstrap 5.3 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jzmHbMPPDy9TaLVjd31HFuV7f/to"
+        crossorigin="anonymous"></script>
 </body>
 </html>

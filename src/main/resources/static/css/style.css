@@ -1,28 +1,65 @@
-* {
+/* ── Global ─────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f6f9;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #f0f2f5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.container {
-    width: 80%;
-    max-width: 800px;
-    margin: 100px auto;
-    text-align: center;
+/* ── Hero section ───────────────────────────────────────────────── */
+.hero-section {
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 60%, #084298 100%);
+    padding: 4rem 1rem;
 }
 
-h1 {
-    font-size: 42px;
+/* ── Card hover lift ────────────────────────────────────────────── */
+.card-hover {
+    transition: transform .2s ease, box-shadow .2s ease;
 }
 
-.status {
-    margin-top: 40px;
-    padding: 30px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+.card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .12) !important;
+}
+
+/* ── Icon circle ────────────────────────────────────────────────── */
+.icon-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+/* ── Letter spacing helper ──────────────────────────────────────── */
+.letter-spacing {
+    letter-spacing: .06em;
+    font-size: .75rem;
+}
+
+/* ── Table tweaks ───────────────────────────────────────────────── */
+.table > tbody > tr > td {
+    padding-top: .9rem;
+    padding-bottom: .9rem;
+    vertical-align: middle;
+}
+
+/* ── Navbar brand ───────────────────────────────────────────────── */
+.navbar-brand {
+    font-size: 1.25rem;
+}
+
+/* ── Footer ─────────────────────────────────────────────────────── */
+footer {
+    background: #fff;
 }
