@@ -1,10 +1,10 @@
-package fa.training.demo_deploy;
+package fa.training.product_manager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoDeployApplicationTests {
+class ProductManagerApplicationTests {
 	
 	@Test
 	void contextLoads() {
